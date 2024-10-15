@@ -20,8 +20,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh '''
                     echo "${PASS}" | docker login --username "${USER}" --password-stdin
-                    docker tag flask-monitoring ${USER}/flask-monitoring:latest
-                    docker push ${USER}/flask-monitoring:latest
+                    docker tag flask-monitot ${USER}/flask-monitot:latest
+                    docker push ${USER}/flask-monitot:latest
                     '''
                 }
             }
