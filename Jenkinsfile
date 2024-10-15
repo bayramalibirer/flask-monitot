@@ -5,13 +5,13 @@ pipeline {
         stage('Git Cloning') {
             steps {
                 echo 'Cloning git repo'
-                git url: 'https://github.com/hakanbayraktar/flask-monitoring.git',  branch: 'main'
+                git url: 'https://github.com/bayramalibirer/flask-monitot.git',  branch: 'main'
             }
         }
         stage('Build Docker Image') {
             steps {
                 echo 'Building the image'
-                sh 'docker build -t flask-monitoring .'
+                sh 'docker build -t flask-monitot .'
             }
         }
         stage('Push to Docker Hub') {
@@ -33,9 +33,9 @@ pipeline {
                     curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"
                     chmod u+x ./kubectl
                     export KUBECONFIG=$(mktemp)
-                    ./kubectl config set-cluster do-fra1-argocd --server=https://85a67b80-af88-4186-975e-f43098efa0d4.k8s.ondigitalocean.com --insecure-skip-tls-verify=true
+                    ./kubectl config set-cluster do-fra1-tech-istabul-odev-2 --server=https://987b5d0b-f856-4b46-b17f-9fc501bb027d.k8s.ondigitalocean.com --insecure-skip-tls-verify=true
                     ./kubectl config set-credentials jenkins --token=${KUBE_TOKEN}
-                    ./kubectl config set-context default --cluster=do-fra1-argocd --user=jenkins --namespace=default
+                    ./kubectl config set-context default --cluster=do-fra1-tech-istabul-odev-2 --user=jenkins --namespace=default
                     ./kubectl config use-context default
                     ./kubectl get nodes
                     ./kubectl apply -f service.yaml
